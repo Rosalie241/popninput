@@ -8,9 +8,23 @@
 //  along with this program. If not, see <https://www.gnu.org/licenses/>.
 //
 
+//
+// Includes
+// 
+
 #include <windows.h>
 #include <stdio.h>
 #include <stdbool.h>
+
+//
+// Global variables
+//
+
+static int g_ButtonState = 0;
+
+//
+// Helper functions
+//
 
 static void DisplayError(const char* fmt, ...)
 {
@@ -24,12 +38,16 @@ static void DisplayError(const char* fmt, ...)
     MessageBoxA(NULL, buf, "popninput", MB_OK | MB_ICONERROR);
 }
 
+//
+// Library functions
+//
+
 /// <summary>
 ///     Initializes Input
 /// </summary>
 bool pdiInitialize(HINSTANCE hinst, void* param2)
 {
-    DisplayError("pdiInitialize");
+    //DisplayError("pdiInitialize");
     return true;
 }
 
@@ -39,8 +57,29 @@ bool pdiInitialize(HINSTANCE hinst, void* param2)
 /// <returns></returns>
 void pdiRelease(void)
 {
-    DisplayError("pdiRelease");
+    //DisplayError("pdiRelease");
 }
+
+int g_ButtonKeybindings[] = 
+{
+    0x41,
+    0x57,
+    0x53,
+    0x45,
+    0x44,
+    0x52,
+    0x46,
+    0x54,
+    0x47
+};
+
+// button layout (index 0-8)
+//
+//      {button 1} {button 3} {button 5} {button 7}
+//  {button 0} {button 2} {button 4} {button 6} {button 8}
+//
+//
+
 
 /// <summary>
 ///     Updates Input State
@@ -48,7 +87,17 @@ void pdiRelease(void)
 /// <returns></returns>
 void pdiUpdate(void)
 {
-    DisplayError("pdiUpdate");
+    g_ButtonState = 0;
+    int buttonId = 0;
+
+    for (int i = 0; i < 9; i++)
+    {
+        buttonId = 1 << ((byte)i & 0x1f);
+        if (GetAsyncKeyState(g_ButtonKeybindings[i]) & 0x01)
+        {
+            g_ButtonState |= buttonId | buttonId << 0x10;
+        }
+    }
 }
 
 /// <summary>
@@ -57,8 +106,8 @@ void pdiUpdate(void)
 /// <returns></returns>
 int pdiGetBtnState(void)
 {
-    DisplayError("pdiGetBtnState");
-    return 0;
+    //DisplayError("pdiGetBtnState");
+    return g_ButtonState;
 }
 
 /// <summary>
@@ -67,7 +116,7 @@ int pdiGetBtnState(void)
 /// <returns></returns>
 int pdiGetDllMode(void)
 {
-    DisplayError("pdiGetDllMode");
+    //DisplayError("pdiGetDllMode");
     return 1;
 }
 
@@ -77,7 +126,7 @@ int pdiGetDllMode(void)
 /// <param name="param1"></param>
 void pdiSetDbgMode(void* param1)
 {
-    DisplayError("pdiSetDbgMode");
+    //DisplayError("pdiSetDbgMode");
 }
 
 /// <summary>
@@ -87,7 +136,7 @@ void pdiSetDbgMode(void* param1)
 /// <returns></returns>
 bool pdiLoadConfig(void)
 {
-    DisplayError("pdiLoadConfig");
+    //DisplayError("pdiLoadConfig");
     return true;
 }
 
@@ -98,7 +147,7 @@ bool pdiLoadConfig(void)
 /// <returns></returns>
 void* pdiGetConfigSoftware(void)
 {
-    DisplayError("pdiGetConfigSoftware");
+    //DisplayError("pdiGetConfigSoftware");
     return NULL;
 }
 
@@ -110,7 +159,7 @@ void* pdiGetConfigSoftware(void)
 /// <returns></returns>
 bool pdiIsJoyConnect(void)
 {
-    DisplayError("pdiIsJoyConnect");
+    //DisplayError("pdiIsJoyConnect");
     return true;
 }
 
@@ -120,7 +169,7 @@ bool pdiIsJoyConnect(void)
 /// <param name="hModule"></param>
 void pdiCreateDesktopShortcut(HMODULE hModule)
 {
-    DisplayError("pdiCreateDesktopShortcut");
+    //DisplayError("pdiCreateDesktopShortcut");
 }
 
 /// <summary>
@@ -129,7 +178,7 @@ void pdiCreateDesktopShortcut(HMODULE hModule)
 /// <param name=""></param>
 void pdiDeleteDesktopShortcut(void)
 {
-    DisplayError("pdiDeleteDesktopShortcut");
+    //DisplayError("pdiDeleteDesktopShortcut");
 }
 
 struct tagPDI_CONFIGDATA
@@ -144,7 +193,7 @@ struct tagPDI_CONFIGDATA
 /// <returns></returns>
 struct tagPDI_CONFIGDATA* pdiGetConfig(void)
 {
-    DisplayError("pdiGetConfig");
+    //DisplayError("pdiGetConfig");
     return NULL;
 }
 
@@ -155,6 +204,6 @@ struct tagPDI_CONFIGDATA* pdiGetConfig(void)
 /// <returns></returns>
 int pdiSaveConfig(void)
 {
-    DisplayError("pdiSaveConfig");
+    //DisplayError("pdiSaveConfig");
     return 1;
 }
