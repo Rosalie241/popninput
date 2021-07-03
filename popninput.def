@@ -1,0 +1,18 @@
+LIBRARY "popninput.dll"
+EXPORTS
+	pdiInitialize @1
+	pdiRelease @2
+	pdiUpdate @3
+	pdiGetBtnState @4
+	pdiGetDllMode @5
+	pdiSetDbgMode @6
+	pdiLoadConfig @7
+	pdiGetConfigSoftware @8
+	pdiIsJoyConnect @9
+	pdiCreateDesktopShortcut @10
+	pdiDeleteDesktopShortcut @11
+	; only the launcher needs this..
+	; pdiGetConfig @12
+	; pdiSaveConfig @13
+	; ?pdiGetConfig@@YGPAUtagPDI_CONFIGDATA@@XZ
+	; ?pdiSaveConfig@@YGHXZ
