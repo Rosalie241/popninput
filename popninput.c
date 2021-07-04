@@ -23,22 +23,6 @@
 static int g_ButtonState = 0;
 
 //
-// Helper functions
-//
-
-static void DisplayError(const char* fmt, ...)
-{
-    char buf[1000];
-
-    va_list args;
-    va_start(args, fmt);
-    vsprintf(buf, fmt, args);
-    va_end(args);
-
-    MessageBoxA(NULL, buf, "popninput", MB_OK | MB_ICONERROR);
-}
-
-//
 // Library functions
 //
 
@@ -47,7 +31,6 @@ static void DisplayError(const char* fmt, ...)
 /// </summary>
 bool pdiInitialize(HINSTANCE hinst, void* param2)
 {
-    //DisplayError("pdiInitialize");
     return true;
 }
 
@@ -57,7 +40,6 @@ bool pdiInitialize(HINSTANCE hinst, void* param2)
 /// <returns></returns>
 void pdiRelease(void)
 {
-    //DisplayError("pdiRelease");
 }
 
 int g_ButtonKeybindings[] = 
@@ -106,7 +88,6 @@ void pdiUpdate(void)
 /// <returns></returns>
 int pdiGetBtnState(void)
 {
-    //DisplayError("pdiGetBtnState");
     return g_ButtonState;
 }
 
@@ -116,94 +97,6 @@ int pdiGetBtnState(void)
 /// <returns></returns>
 int pdiGetDllMode(void)
 {
-    //DisplayError("pdiGetDllMode");
     return 1;
 }
 
-/// <summary>
-///     ???
-/// </summary>
-/// <param name="param1"></param>
-void pdiSetDbgMode(void* param1)
-{
-    //DisplayError("pdiSetDbgMode");
-}
-
-/// <summary>
-///     Load Input Config
-/// </summary>
-/// <param name=""></param>
-/// <returns></returns>
-bool pdiLoadConfig(void)
-{
-    //DisplayError("pdiLoadConfig");
-    return true;
-}
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name=""></param>
-/// <returns></returns>
-void* pdiGetConfigSoftware(void)
-{
-    //DisplayError("pdiGetConfigSoftware");
-    return NULL;
-}
-
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name=""></param>
-/// <returns></returns>
-bool pdiIsJoyConnect(void)
-{
-    //DisplayError("pdiIsJoyConnect");
-    return true;
-}
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name="hModule"></param>
-void pdiCreateDesktopShortcut(HMODULE hModule)
-{
-    //DisplayError("pdiCreateDesktopShortcut");
-}
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name=""></param>
-void pdiDeleteDesktopShortcut(void)
-{
-    //DisplayError("pdiDeleteDesktopShortcut");
-}
-
-struct tagPDI_CONFIGDATA
-{
-    // TODO: struct is 8 bytes
-};
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name=""></param>
-/// <returns></returns>
-struct tagPDI_CONFIGDATA* pdiGetConfig(void)
-{
-    //DisplayError("pdiGetConfig");
-    return NULL;
-}
-
-/// <summary>
-///     ???
-/// </summary>
-/// <param name=""></param>
-/// <returns></returns>
-int pdiSaveConfig(void)
-{
-    //DisplayError("pdiSaveConfig");
-    return 1;
-}
