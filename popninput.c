@@ -183,14 +183,6 @@ void pdiRelease(void)
 {
 }
 
-// button layout (index 0-8)
-//
-//      {button 1} {button 3} {button 5} {button 7}
-//  {button 0} {button 2} {button 4} {button 6} {button 8}
-//
-//
-
-
 /// <summary>
 ///     Updates Input State
 /// </summary>
